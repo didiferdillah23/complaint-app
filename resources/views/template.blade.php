@@ -107,6 +107,15 @@
                     </span>
                     <!-- <h4 style="color: white;">Gambar Logo</h4> -->
                 </a>
+                @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
+                <a href="{{url('laporan-admin')}}">
+                    <b class="logo-abbr"><img src="{{asset('storage/img/kai-mini.png')}}" alt=""> </b>
+                    <!-- <span class="logo-compact"><img src="{{asset('quixlab/images/logo-compact.png')}}" alt=""></span> -->
+                    <span class="brand-title">
+                        <img src="{{asset('storage/img/kai.png')}}" width="100" height="50" style="margin-left: 40px; margin-bottom: 10px;">
+                    </span>
+                    <!-- <h4 style="color: white;">Gambar Logo</h4> -->
+                </a>
                 @endif
             </div>
         </div>
@@ -261,6 +270,8 @@
                             {{Auth::guard('teknisi')->user()->nama}} - Teknisi
                             @elseif (Str::length(Auth::guard('admin')->user()) > 0)
                             {{Auth::guard('admin')->user()->nama}}
+                            @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
+                            {{Auth::guard('admin_utama')->user()->nama}}
                             @endif
                         </li>
                         <li class="icons dropdown">
@@ -273,6 +284,8 @@
                                 @elseif (Str::length(Auth::guard('teknisi')->user()) > 0)
                                 <img src="{{asset('quixlab/images/user/1.png')}}" height="40" width="40" alt="">
                                 @elseif (Str::length(Auth::guard('admin')->user()) > 0)
+                                <img src="{{asset('quixlab/images/user/1.png')}}" height="40" width="40" alt="">
+                                @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
                                 <img src="{{asset('quixlab/images/user/1.png')}}" height="40" width="40" alt="">
                                 @endif
                             </div>
@@ -382,6 +395,60 @@
                             <li><a href="{{url('kop-surat')}}">Kop Surat</a></li>
                             <li><a href="{{url('broadcast')}}">Broadcast</a></li>
                         </ul>
+                    </li>
+                    @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
+                    <li>
+                        <a href="{{url('dashboard-admin')}}">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('list-akun-admin')}}">
+                            <i class="fa fa-users"></i><span class="nav-text">Pengguna</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('persetujuan-akun-admin')}}">
+                            <i class="fa fa-check-square-o"></i><span class="nav-text">Persetujuan Akun</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-files-o"></i> <span class="nav-text">Laporan</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{url('laporan-admin')}}">Laporan Masuk</a></li>
+                            <li><a href="{{url('laporan-alihkan')}}">Peralihan Laporan</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li>
+                        <a href="{{url('laporan-admin')}}">
+                            <i class="fa fa-desktop"></i><span class="nav-text">Laporan Masuk</span>
+                        </a>
+                    </li> -->
+                    <!-- <li>
+                        <a href="/send-manager">
+                            <i class="fa fa-file-text""></i><span class=" nav-text">Laporan Manager</span>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="{{url('history-admin')}}">
+                            <i class="fa fa-history"></i><span class=" nav-text">History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-cog"></i> <span class="nav-text">Pengaturan</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{url('kop-surat')}}">Kop Surat</a></li>
+                            <li><a href="{{url('broadcast')}}">Broadcast</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{url('aktivasi-akun')}}">
+                            <i class="fa fa-users"></i><span class=" nav-text">Aktivasi Akun</span>
+                        </a>
                     </li>
                     @elseif (Str::length(Auth::guard('teknisi')->user()) > 0)
                     <li>

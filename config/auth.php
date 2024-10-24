@@ -67,6 +67,11 @@ return [
             'provider' => 'teknisi'
         ],
 
+        'admin_utama' => [
+            'driver' => 'session',
+            'provider' => 'admin_utama'
+        ],
+
         'user' => [
             'driver' => 'session',
             'provider' => 'users'
@@ -114,6 +119,11 @@ return [
         'teknisi' => [
             'driver' => 'eloquent',
             'model' => App\Models\Teknisi::class,
+        ],
+
+        'admin_utama' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminUtama::class,
         ],
 
         // 'users' => [

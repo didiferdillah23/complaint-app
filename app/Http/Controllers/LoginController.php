@@ -51,6 +51,8 @@ class LoginController extends Controller
             return redirect('/profile-pengawas');
         } else if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/dashboard-admin');
+        } else if (Auth::guard('admin_utama')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/dashboard-admin');
         }
 
         $msg = 'Email dan Password Salah';

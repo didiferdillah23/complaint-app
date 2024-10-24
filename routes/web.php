@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUtamaController;
 use App\Http\Controllers\LaporanakhirController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
@@ -45,7 +46,7 @@ Route::post('/regist-pengawas', [PengawasController::class, 'regist'])->name('re
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi']], function () {
+Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama']], function () {
     // ==============ROUTE UNTUK BAGIAN USER PELAPOR============== //
     Route::get('/profile-pelapor', [PelaporController::class, 'profile']);
     Route::post('/save-ttd-pelapor/{id}', [PelaporController::class, 'ttd'])->name('save-ttd-pelapor');;
@@ -92,6 +93,7 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi']], function
     Route::post('/store-broadcast', [BroadcastController::class, 'store'])->name('store-broadcast');
     Route::get('/edit-broadcast/{id}', [BroadcastController::class, 'edit'])->name('edit-broadcast');
     Route::post('/update-broadcast/{id}', [BroadcastController::class, 'update'])->name('update-broadcast');
+    Route::get('/aktivasi-akun', [AdminUtamaController::class, 'showAktivasiAkun'])->name('aktivasi-akun');
 
 
     // ==============ROUTE UNTUK BAGIAN TEKNISI IT============== //
