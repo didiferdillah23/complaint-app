@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pengawas;
 use App\Models\Log_cetak_laporan;
+use App\Models\LogAktivasi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Session; 
@@ -434,4 +435,15 @@ class PengawasController extends Controller
     {
         //
     }
+
+    public function setujuiAktivasi($pengajuanId)
+    {
+        $pengajuan = LogAktivasi::find($pengajuanId);
+
+        $pengajuan->persetujuan_pengawas = 'disetujui';
+        $pengajuan->save();
+
+        return redirect()->back();
+    }
+
 }

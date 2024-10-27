@@ -491,6 +491,11 @@
                             <li><a href="{{url('list-laporan-cetak')}}">Print Laporan</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{url('aktivasi-akun')}}">
+                            <i class="fa fa-users"></i><span class=" nav-text">Aktivasi Akun</span>
+                        </a>
+                    </li>
                     @endif
                     <li>
                         <a href="{{url('logout')}}">

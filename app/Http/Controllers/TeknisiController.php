@@ -165,6 +165,11 @@ class TeknisiController extends Controller
 
     public function proses(Request $request, $id)
     {
+
+        if(auth()->guard('teknisi')->user()->limit_trial < Carbon::now()->format('Y-m-d') && auth()->guard('teknisi')->user()->kode_aktivasi == NULL) {
+            return redirect('/pengajuan-aktivasi');
+        }
+
         $action = $request->action;
         $tgl_masuk = Carbon::now()->format('Y-m-d H:i:s');
 

@@ -668,6 +668,7 @@ class AdminController extends Controller
             't.nipp',
             't.email',
             't.jabatan',
+            't.limit_trial',
             DB::raw('SUM(CASE WHEN dl.kat_layanan = "Throubleshooting" THEN 1 ELSE 0 END) AS total_troubleshooting'),
             DB::raw('SUM(CASE WHEN dl.kat_layanan = "Instalasi" THEN 1 ELSE 0 END) AS total_instalasi'),
             DB::raw('COUNT(dl.id) AS jumlah_laporan')
@@ -793,6 +794,7 @@ class AdminController extends Controller
                 'nipp'      => $request->nipp,
                 'email'     => $request->email,
                 'jabatan'   => $request->jabatan,
+                'limit_trial'   => $request->limit_trial,
             ]);
         Session::flash('success');
 

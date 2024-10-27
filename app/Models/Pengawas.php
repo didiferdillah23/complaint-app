@@ -13,10 +13,16 @@ class Pengawas extends Authenticatable
     protected $primaryKey = "id"; //cek
 
     protected $fillable = [
-        'id', 'nama', 'nipp', 'email', 'password','ttd','status','jabatan'
+        'id', 'nama', 'nipp', 'email', 'password','ttd','status','jabatan','status_aktivasi','kode_aktivasi'
     ];
 
     protected $hidden = [
         'password',
     ];
+    
+    public function logAktivasi()
+    {
+        return $this->morphMany(LogAktivasi::class, 'relatable');
+    }
+
 }

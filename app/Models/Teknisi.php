@@ -14,10 +14,16 @@ class Teknisi extends Authenticatable
     protected $primaryKey = "id"; //cek
 
     protected $fillable = [
-        'id', 'nama', 'jabatan', 'nipp', 'email', 'password', 'ttd', 'foto','status'
+        'id', 'nama', 'jabatan', 'nipp', 'email', 'password', 'ttd', 'foto','status','status_aktivasi','kode_aktivasi','limit_trial'
     ];
 
     protected $hidden = [
         'password',
     ];
+
+    public function logAktivasi()
+    {
+        return $this->morphMany(LogAktivasi::class, 'relatable');
+    }
+
 }

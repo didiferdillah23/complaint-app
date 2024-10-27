@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login');
 });
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
 Route::get('/register', function () {
     return view('register');
 });
@@ -94,6 +97,8 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::get('/edit-broadcast/{id}', [BroadcastController::class, 'edit'])->name('edit-broadcast');
     Route::post('/update-broadcast/{id}', [BroadcastController::class, 'update'])->name('update-broadcast');
     Route::get('/aktivasi-akun', [AdminUtamaController::class, 'showAktivasiAkun'])->name('aktivasi-akun');
+    Route::get('/aktivasi-akun/{pengajuanId}', [AdminUtamaController::class, 'aktivasi'])->name('aktivasi');
+
 
 
     // ==============ROUTE UNTUK BAGIAN TEKNISI IT============== //
@@ -111,6 +116,9 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::post('/detail-pekerjaan-it/{id_det}', [TeknisiController::class, 'pekerjaanIT'])->name('detail-pekerjaan-it');
     Route::post('/tambah-pekerjaan-it/{id}', [TeknisiController::class, 'tambahpekerjaanIT'])->name('tambah-pekerjaan-it');
     Route::get('/hapus-pekerjaan-it/{id}', [TeknisiController::class, 'hapuspekerjaanIT'])->name('hapus-pekerjaan-it');
+    Route::get('/pengajuan-aktivasi', [AdminUtamaController::class, 'formPengajuanAktivasi'])->name('pengajuan-aktivasi');
+    Route::post('/submit-aktivasi', [AdminUtamaController::class, 'submitAktivasi'])->name('submit-aktivasi');
+    Route::post('/submit-kode-aktivasi', [AdminUtamaController::class, 'submitKodeAktivasi'])->name('submit-kode-aktivasi');
 
 
     // ==============ROUTE UNTUK BAGIAN PENGAWAS/MANAGER============== //
@@ -126,6 +134,7 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::get('/detail-laporan/{id}', [PengawasController::class, 'detail'])->name('detail-laporan');
     Route::post('/laporan-akhir/{idlap}', [LaporanakhirController::class, 'store'])->name('laporan-akhir');
     Route::get('/cetak', function () {return view('pengawas.cetak');});
+    Route::get('/setujui-aktivasi/{pengajuanId}', [PengawasController::class, 'setujuiAktivasi'])->name('setujuiAktivasi');
 
     
 
