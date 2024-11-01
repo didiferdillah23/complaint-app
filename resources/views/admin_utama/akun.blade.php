@@ -24,9 +24,6 @@
                                             <th>NIPP</th>
                                             <th>Jabatan</th>
                                             <th>Email</th>
-                                            @if(auth()->guard('admin_utama')->check())
-                                            <th>Kode Aktivasi</th>
-                                            @endif
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -38,9 +35,6 @@
                                             <td>{{ $user->relatable->nipp }}</td>
                                             <td>{{ $user->relatable->jabatan }}</td>
                                             <td>{{ $user->relatable->email }}</td>
-                                            @if(auth()->guard('admin_utama')->check())
-                                            <td>{{ $user->kode_aktivasi }}</td>
-                                            @endif
                                             <td>
                                                 @if($user->persetujuan_pengawas == 'pengajuan' && Auth::guard('admin')->check())
                                                     <a href="/setujui-aktivasi/{{ $user->id }}" onclick="return confirm('Apakah Yakin Setujui Akun Ini?')" class="btn btn-primary">Setujui</a>
