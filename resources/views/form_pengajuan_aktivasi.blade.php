@@ -16,7 +16,7 @@
 
                         <h4><i class="icon-lock"></i> Pengajuan Aktivasi</h4>
                         <p class="text-muted mb-4">
-                            Akun Anda akan diaktivasi setelah persetujuan pengawas. Admin akan mengirimkan kode aktivasi setelah pengajuan disetujui.
+                            Akun Anda akan diaktivasi setelah persetujuan admin operasional. Admin akan mengirimkan kode aktivasi setelah pengajuan disetujui.
                         </p>
 
                         @if($aktivasi == NULL)

@@ -81,6 +81,16 @@ class AdminUtamaController extends Controller
         $pengajuan->kode_aktivasi = $kode_aktivasi;
         $pengajuan->save();
 
+        $data = [
+            'firstname' => 'Admin Utama',
+            'nama_teknisi' => $pengajuan->relatable->nama,
+            'kode_aktivasi' => $pengajuan->kode_aktivasi
+        ];
+        \Mail::send('template-email-aktivasi', $data, function($message)
+        {
+            $message->to('raisusmanadzikri@gmail.com', 'Pak Usman')->subject('Kode Aktivasi');
+        });
+
         return redirect()->back();
     }
 

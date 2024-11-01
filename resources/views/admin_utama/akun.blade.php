@@ -11,7 +11,6 @@
                 <h4 class="card-title">Pemohon Aktivasi</h4>
                 <ul class="nav nav-pills mb-3">
                     <li class="nav-item"><a href="?active_tab=teknisi" class="nav-link @if($active_tab == 'teknisi') active @endif">Teknisi IT </a></li>
-                    <li class="nav-item"><a href="?active_tab=pengawas" class="nav-link @if($active_tab == 'pengawas') active @endif">Pengawas </a></li>
                 </ul>
                 <div class="tab-content br-n pn">
                     <div class="row align-items-center">
@@ -43,7 +42,7 @@
                                             <td>{{ $user->kode_aktivasi }}</td>
                                             @endif
                                             <td>
-                                                @if($user->persetujuan_pengawas == 'pengajuan' && Auth::guard('pengawas')->check())
+                                                @if($user->persetujuan_pengawas == 'pengajuan' && Auth::guard('admin')->check())
                                                     <a href="/setujui-aktivasi/{{ $user->id }}" onclick="return confirm('Apakah Yakin Setujui Akun Ini?')" class="btn btn-primary">Setujui</a>
                                                 @endif
 

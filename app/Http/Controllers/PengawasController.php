@@ -436,14 +436,5 @@ class PengawasController extends Controller
         //
     }
 
-    public function setujuiAktivasi($pengajuanId)
-    {
-        $pengajuan = LogAktivasi::find($pengajuanId);
-
-        $pengajuan->persetujuan_pengawas = 'disetujui';
-        $pengajuan->save();
-
-        return redirect()->back();
-    }
 
 }

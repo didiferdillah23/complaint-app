@@ -396,6 +396,11 @@
                             <li><a href="{{url('broadcast')}}">Broadcast</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{url('aktivasi-akun')}}">
+                            <i class="fa fa-users"></i><span class=" nav-text">Aktivasi Akun</span>
+                        </a>
+                    </li>
                     @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
                     <li>
                         <a href="{{url('dashboard-admin')}}">
@@ -406,44 +411,6 @@
                         <a href="{{url('list-akun-admin')}}">
                             <i class="fa fa-users"></i><span class="nav-text">Pengguna</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{url('persetujuan-akun-admin')}}">
-                            <i class="fa fa-check-square-o"></i><span class="nav-text">Persetujuan Akun</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-files-o"></i> <span class="nav-text">Laporan</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{url('laporan-admin')}}">Laporan Masuk</a></li>
-                            <li><a href="{{url('laporan-alihkan')}}">Peralihan Laporan</a></li>
-                        </ul>
-                    </li>
-                    <!-- <li>
-                        <a href="{{url('laporan-admin')}}">
-                            <i class="fa fa-desktop"></i><span class="nav-text">Laporan Masuk</span>
-                        </a>
-                    </li> -->
-                    <!-- <li>
-                        <a href="/send-manager">
-                            <i class="fa fa-file-text""></i><span class=" nav-text">Laporan Manager</span>
-                        </a>
-                    </li> -->
-                    <li>
-                        <a href="{{url('history-admin')}}">
-                            <i class="fa fa-history"></i><span class=" nav-text">History</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-cog"></i> <span class="nav-text">Pengaturan</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{url('kop-surat')}}">Kop Surat</a></li>
-                            <li><a href="{{url('broadcast')}}">Broadcast</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="{{url('aktivasi-akun')}}">
@@ -490,11 +457,6 @@
                             <li><a href="{{url('list-laporan')}}">Daftar Laporan</a></li>
                             <li><a href="{{url('list-laporan-cetak')}}">Print Laporan</a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="{{url('aktivasi-akun')}}">
-                            <i class="fa fa-users"></i><span class=" nav-text">Aktivasi Akun</span>
-                        </a>
                     </li>
                     @endif
                     <li>

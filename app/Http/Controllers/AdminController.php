@@ -10,6 +10,7 @@ use App\Models\Pengawas;
 use Carbon\Carbon;
 use App\Models\Laporanakhir;
 use App\Models\Laporanhist;
+use App\Models\LogAktivasi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -828,4 +829,15 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function setujuiAktivasi($pengajuanId)
+    {
+        $pengajuan = LogAktivasi::find($pengajuanId);
+
+        $pengajuan->persetujuan_pengawas = 'disetujui';
+        $pengajuan->save();
+
+        return redirect()->back();
+    }
+    
 }

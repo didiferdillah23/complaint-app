@@ -98,6 +98,7 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::post('/update-broadcast/{id}', [BroadcastController::class, 'update'])->name('update-broadcast');
     Route::get('/aktivasi-akun', [AdminUtamaController::class, 'showAktivasiAkun'])->name('aktivasi-akun');
     Route::get('/aktivasi-akun/{pengajuanId}', [AdminUtamaController::class, 'aktivasi'])->name('aktivasi');
+    Route::get('/setujui-aktivasi/{pengajuanId}', [AdminController::class, 'setujuiAktivasi'])->name('setujuiAktivasi');
 
 
 
@@ -134,9 +135,5 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::get('/detail-laporan/{id}', [PengawasController::class, 'detail'])->name('detail-laporan');
     Route::post('/laporan-akhir/{idlap}', [LaporanakhirController::class, 'store'])->name('laporan-akhir');
     Route::get('/cetak', function () {return view('pengawas.cetak');});
-    Route::get('/setujui-aktivasi/{pengajuanId}', [PengawasController::class, 'setujuiAktivasi'])->name('setujuiAktivasi');
-
-    
-
 });
 
