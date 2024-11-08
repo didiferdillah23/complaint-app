@@ -184,10 +184,12 @@
                                                                 <label>Email</label>
                                                                 <input type="email" class="form-control" name="email" placeholder="Email" value="{{$dtit2->email}}">
                                                             </div>
+                                                            @if(auth()->guard('admin_utama')->check())
                                                             <div class="form-group col-md-12">
                                                                 <label>Limit Trial</label>
                                                                 <input type="date" class="form-control" name="limit_trial" value="{{$dtit2->limit_trial}}">
                                                             </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
