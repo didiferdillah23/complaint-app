@@ -97,8 +97,9 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::get('/edit-broadcast/{id}', [BroadcastController::class, 'edit'])->name('edit-broadcast');
     Route::post('/update-broadcast/{id}', [BroadcastController::class, 'update'])->name('update-broadcast');
     Route::get('/aktivasi-akun', [AdminUtamaController::class, 'showAktivasiAkun'])->name('aktivasi-akun');
-    Route::get('/aktivasi-akun/{pengajuanId}', [AdminUtamaController::class, 'aktivasi'])->name('aktivasi');
-    Route::get('/setujui-aktivasi/{pengajuanId}', [AdminController::class, 'setujuiAktivasi'])->name('setujuiAktivasi');
+    Route::get('/aktivasi-akun/{userId}', [AdminUtamaController::class, 'aktivasi'])->name('aktivasi');
+    Route::post('/aktivasi-akun/{userId}', [AdminUtamaController::class, 'postAktivasi'])->name('aktivasi');
+    // Route::get('/setujui-aktivasi/{pengajuanId}', [AdminController::class, 'setujuiAktivasi'])->name('setujuiAktivasi');
 
 
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kode Aktivasi</title>
+    <title>Laporan Diambil</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,19 +56,23 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Kode Aktivasi</h1>
+            <h1>Laporan Diambil</h1>
         </div>
         <div class="content">
-            <p>Halo Admin Utama,</p>
-            <p>Ada yang mengajukan aktivasi, berikut adalah kodenya :</p>
+            <p>Halo {{ $nama_pelapor }},</p>
+            <p>Laporan anda telah diambil oleh pengawas, dengan detail sebagai berikut :</p>
             <table>
                 <tr>
-                    <th>PERMINTAAN DARI</th>
-                    <td>{{ $nama_teknisi }}</td>
+                    <th>NOMOR INVENTARIS</th>
+                    <td>{{ $nomor_inventaris }}</td>
                 </tr>
                 <tr>
-                    <th>KODE</th>
-                    <td>{{ $kode_aktivasi }}</td>
+                    <th>DIAMBIL OLEH</th>
+                    <td>{{ $nama_pengawas }}</td>
+                </tr>
+                <tr>
+                    <th>NIPP PENGAWAS</th>
+                    <td>{{ $nipp_pengawas }}</td>
                 </tr>
             </table>
         </div>

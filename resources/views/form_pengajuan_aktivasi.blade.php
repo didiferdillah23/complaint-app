@@ -15,52 +15,14 @@
                         @endif
 
                         <h4><i class="icon-lock"></i> Pengajuan Aktivasi</h4>
-                        <p class="text-muted mb-4">
-                            Akun Anda akan diaktivasi setelah persetujuan admin operasional. Admin akan mengirimkan kode aktivasi setelah pengajuan disetujui.
-                        </p>
 
                         @if($aktivasi == NULL)
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th>Nama</th>
-                                    <td>{{ $user->nama }}</td>
-                                </tr>
-                                <tr>
-                                    <th>NIPP</th>
-                                    <td>{{ $user->nipp }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Jabatan</th>
-                                    <td>{{ $user->jabatan }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Tgl Habis Trial</th>
-                                    <td>{{ $user->limit_trial }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <form action="/submit-aktivasi" onsubmit="return confirm('Ajukan aktivasi?')" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary w-100">Ajukan Aktivasi</button>
-                        </form>
+                        <p class="text-muted mb-4">
+                            Akun anda belum diaktivasi, silahkan hubungi developer untuk mengaktivasikan akun anda.
+                        </p>
                         @endif
 
-                        @if($aktivasi?->persetujuan_pengawas == 'pengajuan')
-                        <div class="alert alert-warning" role="alert">
-                            Akun ini sedang diproses. Admin akan mengirimkan kode aktivasi setelah pengajuan disetujui.
-                        </div>
-                        @endif
-                        
-                        @if($aktivasi?->persetujuan_pengawas == 'disetujui' && $user->kode_aktivasi == NULL)
-                        <form action="/submit-kode-aktivasi" onsubmit="return confirm('Inputkan kode aktivasi?')" method="POST">
-                            @csrf
-                            <input type="text" class="form-control mb-3" name="kode_aktivasi" required placeholder="Kode aktivasi">
-                            <button type="submit" class="btn btn-primary w-100">Aktivasi</button>
-                        </form>
-                        @endif
-
-                        @if($aktivasi?->persetujuan_pengawas == 'disetujui' && $user->kode_aktivasi != NULL)
+                        @if($user->kode_aktivasi != NULL)
                         <div class="alert alert-success" role="alert">
                             Selamat, Akun ini sudah diaktivasi. Sekarang anda dapat menggunakan fitur yang awalnya terkunci.
                         </div>

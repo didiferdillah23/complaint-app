@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LogAktivasi;
+use App\Models\Teknisi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,8 @@ class AdminUtamaController extends Controller
         $active_tab = $request->active_tab??'teknisi';
         $where_condition = $active_tab == 'teknisi' ? 'App\Models\Teknisi' : 'App\Models\Pengawas';
 
-        $users = LogAktivasi::with('relatable')->where('relatable_type', $where_condition)->get();
+        // $users = LogAktivasi::with('relatable')->where('relatable_type', $where_condition)->get();
+        $users = Teknisi::with('logAktivasi')->get();
 
         return view('admin_utama.akun', [
             'active_tab' => $active_tab,
@@ -69,27 +71,55 @@ class AdminUtamaController extends Controller
         }
     }
 
-    public function aktivasi($pengajuanId)
+    public function aktivasi($userId)
     {
-        $pengajuan = LogAktivasi::find($pengajuanId);
+        $user = Teknisi::find($userId);
+
+        // create log aktivasi
+        $log = LogAktivasi::create([
+            'relatable_id' => $user->id,
+            'relatable_type' => 'App\Models\Teknisi',
+            'status_aktivasi' => 1,
+            'kode_aktivasi' => '-'
+        ]);
 
         do {
             $kode_aktivasi = \Str::upper(\Str::random(10));
         } while (LogAktivasi::where('kode_aktivasi', $kode_aktivasi)->exists());
 
-        $pengajuan->status_aktivasi = 1;
-        $pengajuan->kode_aktivasi = $kode_aktivasi;
-        $pengajuan->save();
+        $log->update(['kode_aktivasi' => $kode_aktivasi]);
 
-        $data = [
-            'firstname' => 'Admin Utama',
-            'nama_teknisi' => $pengajuan->relatable->nama,
-            'kode_aktivasi' => $pengajuan->kode_aktivasi
-        ];
-        \Mail::send('template-email-aktivasi', $data, function($message)
-        {
-            $message->to('raisusmanadzikri@gmail.com', 'Pak Usman')->subject('Kode Aktivasi');
-        });
+        // $data = [
+        //     'firstname' => 'Admin Utama',
+        //     'nama_teknisi' => $user->relatable->nama,
+        //     'kode_aktivasi' => $user->kode_aktivasi
+        // ];
+        // \Mail::send('template-email-aktivasi', $data, function($message)
+        // {
+        //     $message->to('raisusmanadzikri@gmail.com', 'Pak Usman')->subject('Kode Aktivasi');
+        // });
+
+        return redirect()->back();
+    }
+
+    public function postAktivasi(Request $request,$userId)
+    {
+        $user = Teknisi::find($userId);
+
+        if(LogAktivasi::where('kode_aktivasi', $request->code)->where('relatable_id', $user->id)->where('relatable_type', 'App\Models\Teknisi')->first() == NULL) {
+            $msg = 'Kode aktivasi tidak valid!';
+            Session::flash('warning', $msg); 
+
+            return redirect()->back();
+        }
+
+        $user->update([
+            'status_aktivasi' => 1,
+            'kode_aktivasi' => $request->code
+        ]);
+
+        $msg = 'Berhasil melakukan aktivasi!';
+        Session::flash('success', $msg);
 
         return redirect()->back();
     }

@@ -396,11 +396,11 @@
                             <li><a href="{{url('broadcast')}}">Broadcast</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{url('aktivasi-akun')}}">
                             <i class="fa fa-users"></i><span class=" nav-text">Aktivasi Akun</span>
                         </a>
-                    </li>
+                    </li> -->
                     @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
                     <li>
                         <a href="{{url('dashboard-admin')}}">

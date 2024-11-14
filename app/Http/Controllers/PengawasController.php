@@ -196,6 +196,34 @@ class PengawasController extends Controller
                 'id_pengawas' => Auth::guard('pengawas')->user()->id
             ]);
 
+        $laporan = DB::table('laporan')
+        ->where('id', $idlap)
+        ->first();
+
+        $lap = DB::table('laporan')
+        ->where('id', $idlap)
+        ->first();
+
+        $pelapor = DB::table('pelapor')
+        ->where('id', $lap->id_pelapor)
+        ->first();
+
+        $pengawas = DB::table('pengawas')
+        ->where('id', Auth::guard('pengawas')->user()->id)
+        ->first();
+
+        $data = [
+            'nama_pelapor' => $pelapor->nama,
+            'email_pelapor' => $pelapor->email,
+            'nama_pengawas' => $pengawas->nama,
+            'nipp_pengawas' => $pengawas->nipp,
+            'nomor_inventaris' => $laporan->no_inv_aset
+        ];
+        \Mail::send('template-email-ambil-laporan', $data, function($message) use ($data)
+        {
+            $message->to($data['email_pelapor'], $data['nama_pelapor'])->subject('Laporan Penyelesaian permasalahan alat elektronik PT. KAI Daop 4 Semarang');
+        });
+
         Session::flash('success'); 
 
         return back();

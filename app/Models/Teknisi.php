@@ -23,7 +23,7 @@ class Teknisi extends Authenticatable
 
     public function logAktivasi()
     {
-        return $this->morphMany(LogAktivasi::class, 'relatable');
+        return $this->morphOne(LogAktivasi::class, 'relatable');
     }
 
 }

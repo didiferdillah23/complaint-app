@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('relatable_type');
             $table->char('status_aktivasi', 1)->default(0);
             $table->string('kode_aktivasi')->nullable();
-            $table->enum('persetujuan_pengawas', ['pengajuan', 'disetujui', 'ditolak']);
             $table->timestamps();
         });
     }
