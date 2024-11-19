@@ -401,6 +401,11 @@
                             <i class="fa fa-users"></i><span class=" nav-text">Aktivasi Akun</span>
                         </a>
                     </li> -->
+                    <li>
+                        <a href="{{url('email-tembusan')}}">
+                            <i class="fa fa-envelope"></i><span class=" nav-text">Email Tembusan</span>
+                        </a>
+                    </li>
                     @elseif (Str::length(Auth::guard('admin_utama')->user()) > 0)
                     <li>
                         <a href="{{url('dashboard-admin')}}">

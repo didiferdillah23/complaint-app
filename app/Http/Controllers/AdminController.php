@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmailTembusan;
 use App\Models\Kop_surat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -837,6 +838,34 @@ class AdminController extends Controller
         $pengajuan->persetujuan_pengawas = 'disetujui';
         $pengajuan->save();
 
+        return redirect()->back();
+    }
+
+    public function listEmailTembusan()
+    {
+        $listEmailTembusan = EmailTembusan::get();
+
+        return view('admin.email-tembusan', compact('listEmailTembusan'));
+    }
+
+    public function storeEmailTembusan(Request $request)
+    {
+        $newEmailTembusan = new EmailTembusan();
+        $newEmailTembusan->email = $request->email;
+        $newEmailTembusan->save();
+
+        $msg = 'Berhasil menambahkan email tembusan';
+        Session::flash('success', $msg);
+        return redirect()->back();
+    }
+
+    public function destroyEmailTembusan($id)
+    {
+        $emailTembusan = EmailTembusan::find($id);
+        $emailTembusan->delete();
+
+        $msg = 'Berhasil menghapus email tembusan';
+        Session::flash('success', $msg);
         return redirect()->back();
     }
     

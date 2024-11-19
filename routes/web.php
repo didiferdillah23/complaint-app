@@ -99,6 +99,9 @@ Route::group(['middleware' => ['auth:admin,pelapor,pengawas,teknisi,admin_utama'
     Route::get('/aktivasi-akun', [AdminUtamaController::class, 'showAktivasiAkun'])->name('aktivasi-akun');
     Route::get('/aktivasi-akun/{userId}', [AdminUtamaController::class, 'aktivasi'])->name('aktivasi');
     Route::post('/aktivasi-akun/{userId}', [AdminUtamaController::class, 'postAktivasi'])->name('aktivasi');
+    Route::get('/email-tembusan', [AdminController::class, 'listEmailTembusan'])->name('email-tembusan');
+    Route::post('/email-tembusan', [AdminController::class, 'storeEmailTembusan'])->name('email-tembusan');
+    Route::get('/delete-email-tembusan/{id}', [AdminController::class, 'destroyEmailTembusan'])->name('delete-email-tembusan');
     // Route::get('/setujui-aktivasi/{pengajuanId}', [AdminController::class, 'setujuiAktivasi'])->name('setujuiAktivasi');
 
 

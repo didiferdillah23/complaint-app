@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmailTembusan;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -223,6 +224,16 @@ class PengawasController extends Controller
         {
             $message->to($data['email_pelapor'], $data['nama_pelapor'])->subject('Laporan Penyelesaian permasalahan alat elektronik PT. KAI Daop 4 Semarang');
         });
+
+        // for email tembusan
+        $tembusan = EmailTembusan::get();
+        foreach ($tembusan as $tembusan) {
+
+            \Mail::send('template-email-ambil-laporan', $data, function($message) use ($data, $tembusan)
+            {
+                $message->to($tembusan->email, $data['nama_pelapor'])->subject('Laporan Penyelesaian permasalahan alat elektronik PT. KAI Daop 4 Semarang');
+            });
+        }
 
         Session::flash('success'); 
 
