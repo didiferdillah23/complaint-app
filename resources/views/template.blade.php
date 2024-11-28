@@ -278,7 +278,7 @@
                             <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                                 <span class="activity active"></span>
                                 @if (Str::length(Auth::guard('pelapor')->user()) > 0)
-                                <img src="{{asset('storage/img/pp_pelapor/'. Auth::guard('pelapor')->user()->profile )}}" height="40" width="40" alt="">
+                                <img src="{{asset('quixlab/images/user/form-user.png')}}" height="40" width="40" alt="">
                                 @elseif (Str::length(Auth::guard('pengawas')->user()) > 0)
                                 <img src="{{asset('quixlab/images/user/1.png')}}" height="40" width="40" alt="">
                                 @elseif (Str::length(Auth::guard('teknisi')->user()) > 0)
